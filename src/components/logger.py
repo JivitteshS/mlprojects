@@ -1,5 +1,5 @@
 import logging
-from exception import *
+from src.components.exception import *
 import os
 from datetime import datetime
 
