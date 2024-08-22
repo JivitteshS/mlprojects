@@ -4,7 +4,7 @@ import sys
 import numpy as np
 from sklearn.metrics import r2_score
 import pandas as pd
-from exception import CustomException
+from src.components.exception import CustomException
 from sklearn.model_selection import GridSearchCV
 
 def save_object(file_path,obj):
@@ -13,7 +13,7 @@ def save_object(file_path,obj):
 
         os.makedirs(dir_path,exist_ok=True)
 
-        with open(file_path,"wb") as file_obj:
+        with open(file_path,"w+") as file_obj:
             dill.dump(obj,file_obj)
 
     except Exception as e:
@@ -51,3 +51,14 @@ def evaluate_model(X_train,y_train,x_test,y_test,models,params):
     
     except Exception as e:
         raise CustomException(e,sys)
+
+
+def load_object(file_path):
+    try:
+        with open(file_path,'rb') as file_obj:
+            return dill.load(file_obj)
+        
+    except Exception as e:
+        raise CustomException(e,sys)
+    
+
